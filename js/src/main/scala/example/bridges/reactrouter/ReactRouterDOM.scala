@@ -10,4 +10,12 @@ object ReactRouterDOM extends js.Object {
   val Switch: js.Object = js.native
   val NavLink: js.Object = js.native
   def useParams(): js.Dictionary[String] = js.native
+  def useLocation(): Location = js.native
+
+  trait Location extends js.Object {
+    val key: String
+    val pathname: String
+    val search: String
+    val hash: String
+  }
 }

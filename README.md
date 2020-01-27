@@ -1,5 +1,5 @@
-# scalajs-react-konva
-[![Build Status](https://travis-ci.org/oen9/scalajs-react-konva.svg?branch=master)](https://travis-ci.org/oen9/scalajs-react-konva)
+# react-konva-showcase
+[![Build Status](https://travis-ci.org/oen9/react-konva-showcase.svg?branch=master)](https://travis-ci.org/oen9/react-konva-showcase)
 # Libs
 
 ## backend
@@ -12,6 +12,7 @@
 1. diode
 1. bootstrap
 1. konva
+1. slinky-bridge-react-konva
 
 # DEV
 

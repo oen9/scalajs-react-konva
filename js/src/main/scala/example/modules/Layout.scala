@@ -9,11 +9,14 @@ import example.bridges.reactrouter.NavLink
 import example.bridges.CustomHtmlAttributes._
 import example.modules.MainRouter.Loc
 import slinky.core.facade.ReactElement
+import example.modules.MainRouter.DropDownMenuItems
+import example.modules.MainRouter.RegularMenuItem
+import example.bridges.reactrouter.ReactRouterDOM
 
 @react object Layout {
   case class Props(content: ReactElement)
 
-  def nav(props: Props) =
+  def nav(pathname: String) =
     div(className := "navbar navbar-expand-md navbar-dark bg-dark",
       Link(to = Loc.home)(
         className := "navbar-brand",
@@ -25,11 +28,25 @@ import slinky.core.facade.ReactElement
       ),
       div(className := "collapse navbar-collapse", id := "navbarNav",
         ul(className := "navbar-nav mr-auto",
-          MainRouter.menuItems.map(item =>
-            li(key := item.idx, className := "nav-item",
-              NavLink(exact = true, to = item.location)(className := "nav-link", item.label)
-            )
-          )
+          MainRouter.menuItems.map {
+
+            case item: RegularMenuItem =>
+              li(key := item.idx, className := "nav-item",
+                NavLink(exact = true, to = item.location)(className := "nav-link", item.label)
+              )
+
+            case DropDownMenuItems(idx, items) =>
+              li(key := idx,
+                if (items.exists(_.location == pathname)) className := "nav-item dropdown active" else className := "nav-item dropdown",
+                a(className := "nav-link dropdown-toggle", href := "#", id := "navbarDropdown", role := "button", dataToggle := "dropdown",  ariaHaspopup := "true", ariaExpanded := "false", "types"),
+                div(className := "dropdown-menu", ariaLabelledby := "navbarDropdown",
+                  items.map(item =>
+                    NavLink(exact = true, to = item.location)(className := "dropdown-item", key := item.idx, item.label)
+                  )
+                )
+              )
+
+          }
         )
       )
     )
@@ -42,8 +59,9 @@ import slinky.core.facade.ReactElement
   )
 
   val component = FunctionalComponent[Props] { props =>
+    val location = ReactRouterDOM.useLocation()
     Fragment(
-      nav(props),
+      nav(location.pathname),
       div(className := "container",
         div(className := "main-content mt-5", role := "main", contentBody(props))
       ),

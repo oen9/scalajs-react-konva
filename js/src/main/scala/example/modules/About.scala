@@ -18,11 +18,11 @@ import slinky.web.html._
             ),
             tr(
               td("github"),
-              td(a(target := "_blank", href := "https://github.com/oen9/scalajs-react-konva", "https://github.com/oen9/scalajs-react-konva"))
+              td(a(target := "_blank", href := "https://github.com/oen9/react-konva-showcase", "https://github.com/oen9/react-konva-showcase"))
             ),
             tr(
               td("heroku"),
-              td(a(target := "_blank", href := "https://scalajs-react-konva.herokuapp.com", "https://scalajs-react-konva.herokuapp.com"))
+              td(a(target := "_blank", href := "https://react-konva-showcase.herokuapp.com", "https://react-konva-showcase.herokuapp.com"))
             ),
             tr(
               td("use"),

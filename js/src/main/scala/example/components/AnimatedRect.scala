@@ -4,8 +4,8 @@ import slinky.core.FunctionalComponent
 import slinky.web.html._
 import slinky.core.facade.Hooks._
 import com.github.oen9.slinky.bridge.reactkonva.Rect
+import com.github.oen9.slinky.bridge.konva.Konva
 import slinky.core.annotations.react
-import example.bridges.reactrouter.Konva
 import scala.scalajs.js
 
 @react object AnimatedRect {
@@ -23,8 +23,8 @@ import scala.scalajs.js
     }
 
     Rect(
-      x = 60,
-      y = 60,
+      x = 120,
+      y = 120,
       width = 50,
       height = 50,
       fill = color,

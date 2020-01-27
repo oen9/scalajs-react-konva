@@ -7,6 +7,7 @@ lazy val sharedSettings = Seq(
   organization := "oen",
   scalaVersion := "2.12.10",
   version := "0.1.0-SNAPSHOT",
+  // resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
   libraryDependencies ++= Seq(
     "com.lihaoyi" %%% "scalatags" % "0.7.0",
     "org.typelevel" %% "cats-core" % "1.6.1",
@@ -31,19 +32,19 @@ lazy val jsSettings = Seq(
   libraryDependencies ++= Seq(
     "me.shadaj" %%% "slinky-web" % "0.6.3",
     "com.lambdaminute" %%% "slinky-wrappers-react-router" % "0.4.1",
-    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.0.1",
+    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.0.2",
     "io.suzaku" %%% "diode" % "1.1.5"
   ),
   npmDependencies in Compile ++= Seq(
     "react" -> "16.12.0",
     "react-dom" -> "16.12.0",
-    "react-popper" -> "1.3.6",
+    "react-popper" -> "1.3.7",
     "react-router-dom" -> "5.1.2",
-    "path-to-regexp" -> "6.0.0",
-    "bootstrap" -> "4.3.1",
+    "path-to-regexp" -> "6.1.0",
+    "bootstrap" -> "4.4.1",
     "jquery" -> "3.4.1",
-    "konva" -> "4.0.18",
-    "react-konva" -> "16.10.1-0"
+    "konva" -> "4.1.2",
+    "react-konva" -> "16.12.0-0"
   ),
   scalaJSUseMainModuleInitializer := true,
   localUrl := ("0.0.0.0", 12345),

@@ -4,8 +4,8 @@ import slinky.core.FunctionalComponent
 import slinky.web.html._
 import slinky.core.facade.Hooks._
 import com.github.oen9.slinky.bridge.reactkonva.Rect
+import com.github.oen9.slinky.bridge.konva.Konva
 import slinky.core.annotations.react
-import example.bridges.reactrouter.Konva
 
 @react object AnimatedRectStrictMode {
   type Props = Unit
