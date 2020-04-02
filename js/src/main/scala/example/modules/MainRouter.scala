@@ -1,42 +1,33 @@
 package example.modules
 
-import com.lambdaminute.slinkywrappers.reactrouter.RouteProps
-import example.services.ReactDiode
+import example.bridges.reactrouter.RouteProps
 import example.services.AppCircuit
-import slinky.core.facade.ReactElement
+import example.services.ReactDiode
 import slinky.core.annotations.react
-import slinky.core.StatelessComponent
-import example.bridges.reactrouter.Switch
-import com.lambdaminute.slinkywrappers.reactrouter.Route
-import example.modules.MainRouter.Loc
+import slinky.core.FunctionalComponent
+import slinky.reactrouter.Route
+import slinky.reactrouter.Switch
 
-@react class MainRouter extends StatelessComponent {
+@react object MainRouter {
   type Props = RouteProps
 
-  override def componentDidMount(): Unit = {
-    super.componentDidMount()
-    println("router mounted")
-  }
-
-  def render(): ReactElement = {
+  val component = FunctionalComponent[Props] { _ =>
     import konvatypes._
     val routerSwitch = Switch(
-      Route(exact = true, path = Loc.home, render = _ => KonvaShowcase()),
-      Route(exact = true, path = Loc.about, render = _ => About()),
-      Route(exact = true, path = Loc.rect, render = _ => RectPage()),
-      Route(exact = true, path = Loc.circle, render = _ => CirclePage()),
-      Route(exact = true, path = Loc.text, render = _ => TextPage()),
-      Route(exact = true, path = Loc.line, render = _ => LinePage()),
-      Route(exact = true, path = Loc.ellipse, render = _ => EllipsePage()),
-      Route(exact = true, path = Loc.wedge, render = _ => WedgePage()),
+      Route(exact = true, path = Loc.home, component = KonvaShowcase.component),
+      Route(exact = true, path = Loc.about, component = About.component),
+      Route(exact = true, path = Loc.rect, component = RectPage.component),
+      Route(exact = true, path = Loc.circle, component = CirclePage.component),
+      Route(exact = true, path = Loc.text, component = TextPage.component),
+      Route(exact = true, path = Loc.line, component = LinePage.component),
+      Route(exact = true, path = Loc.ellipse, component = EllipsePage.component),
+      Route(exact = true, path = Loc.wedge, component = WedgePage.component),
     )
     ReactDiode.diodeContext.Provider(AppCircuit)(
       Layout(routerSwitch)
     )
   }
-}
 
-object MainRouter {
   object Loc {
     val home = "/"
     val about = "/about"

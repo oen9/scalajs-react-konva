@@ -1,17 +1,16 @@
 package example.modules
 
-import slinky.core.annotations.react
-import slinky.web.html._
-import slinky.core.FunctionalComponent
-import slinky.core.facade.Fragment
-import com.lambdaminute.slinkywrappers.reactrouter.Link
 import example.bridges.reactrouter.NavLink
-import example.bridges.CustomHtmlAttributes._
-import example.modules.MainRouter.Loc
-import slinky.core.facade.ReactElement
-import example.modules.MainRouter.DropDownMenuItems
-import example.modules.MainRouter.RegularMenuItem
 import example.bridges.reactrouter.ReactRouterDOM
+import example.modules.MainRouter.DropDownMenuItems
+import example.modules.MainRouter.Loc
+import example.modules.MainRouter.RegularMenuItem
+import slinky.core.annotations.react
+import slinky.core.facade.Fragment
+import slinky.core.facade.ReactElement
+import slinky.core.FunctionalComponent
+import slinky.reactrouter.Link
+import slinky.web.html._
 
 @react object Layout {
   case class Props(content: ReactElement)
@@ -38,8 +37,8 @@ import example.bridges.reactrouter.ReactRouterDOM
             case DropDownMenuItems(idx, items) =>
               li(key := idx,
                 if (items.exists(_.location == pathname)) className := "nav-item dropdown active" else className := "nav-item dropdown",
-                a(className := "nav-link dropdown-toggle", href := "#", id := "navbarDropdown", role := "button", dataToggle := "dropdown",  ariaHaspopup := "true", ariaExpanded := "false", "types"),
-                div(className := "dropdown-menu", ariaLabelledby := "navbarDropdown",
+                a(className := "nav-link dropdown-toggle", href := "#", id := "navbarDropdown", role := "button", data-"toggle" := "dropdown",  aria-"haspopup" := "true", aria-"expanded" := "false", "types"),
+                div(className := "dropdown-menu", aria-"labelledby" := "navbarDropdown",
                   items.map(item =>
                     NavLink(exact = true, to = item.location)(className := "dropdown-item", key := item.idx, item.label)
                   )

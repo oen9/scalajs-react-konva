@@ -11,7 +11,7 @@ import akka.http.scaladsl.Http
 
 object MainApp extends IOApp {
 
-  override def run(args: List[String]): IO[ExitCode] = for { // I just like cats and fp
+  override def run(args: List[String]): IO[ExitCode] = for {
     _ <- createServer[IO]()
   } yield ExitCode.Success
 

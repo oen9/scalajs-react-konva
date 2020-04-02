@@ -2,10 +2,17 @@ package example.bridges.reactrouter
 
 import slinky.core.ExternalComponent
 import slinky.core.annotations.react
+import slinky.reactrouter.ReactRouterDOM
 
 import scala.scalajs.js
 import scala.scalajs.js.{|, UndefOr}
-import _root_.com.lambdaminute.slinkywrappers.reactrouter.To
+
+case class To(
+    pathname: Option[String] = None,
+    search: Option[String] = None,
+    hash: Option[String] = None,
+    state: Option[js.Object]
+)
 
 @react object NavLink extends ExternalComponent {
   case class Props(

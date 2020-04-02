@@ -1,13 +1,15 @@
 package example
 
+import example.bridges.reactrouter.HashRouter
+import example.bridges.reactrouter.HashRouter
+import example.bridges.reactrouter.ReactRouterDOM.withRouter
+import example.modules.MainRouter
+import example.modules.MainRouter
 import org.scalajs.dom.document
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import slinky.web.ReactDOM
 import scala.scalajs.LinkingInfo
-import com.lambdaminute.slinkywrappers.reactrouter._
-import example.modules.MainRouter
-import example.bridges.reactrouter.HashRouter
+import slinky.web.ReactDOM
 
 object ScalaJSExample {
 
@@ -24,6 +26,6 @@ object ScalaJSExample {
       println("dev mode")
     }
 
-    ReactDOM.render(HashRouter(withRouter(MainRouter)), target)
+    ReactDOM.render(HashRouter(withRouter(MainRouter.component)(js.Object)), target)
   }
 }

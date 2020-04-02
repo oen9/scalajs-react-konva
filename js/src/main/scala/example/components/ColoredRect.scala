@@ -1,15 +1,14 @@
 package example.components
 
-import slinky.core.FunctionalComponent
-import slinky.web.html._
-import slinky.core.facade.Hooks._
-import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.konva.Konva
-import slinky.core.annotations.react
 import com.github.oen9.slinky.bridge.reactkonva.Operations
-import slinky.core.facade.Fragment
-import slinky.core.facade.React
+import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.reactkonva.Text
+import slinky.core.annotations.react
+import slinky.core.facade.Fragment
+import slinky.core.facade.Hooks._
+import slinky.core.facade.React
+import slinky.core.FunctionalComponent
 
 @react object ColoredRect {
   type Props = Unit

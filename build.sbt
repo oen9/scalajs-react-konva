@@ -1,69 +1,71 @@
-val LogbackVersion = "1.2.3"
-scalaVersion := "2.12.10"
-
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+
+scalaVersion := "2.13.1"
+
+val Ver = new {
+  val slinky = "0.6.4"
+  val logback = "1.2.3"
+  val circe = "0.13.0"
+  val akka = "2.6.4"
+}
 
 lazy val sharedSettings = Seq(
   organization := "oen",
-  scalaVersion := "2.12.10",
+  scalaVersion := "2.13.1",
   version := "0.1.0-SNAPSHOT",
   // resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
   libraryDependencies ++= Seq(
-    "com.lihaoyi" %%% "scalatags" % "0.7.0",
-    "org.typelevel" %% "cats-core" % "1.6.1",
-    "io.circe" %%% "circe-generic" % "0.11.1",
-    "io.circe" %%% "circe-literal" % "0.11.1",
-    "io.circe" %%% "circe-generic-extras" % "0.11.1",
-    "io.circe" %%% "circe-parser" % "0.11.1",
-    "io.scalaland" %%% "chimney" % "0.3.2",
-    "com.softwaremill.quicklens" %%% "quicklens" % "1.4.12"
+    "org.typelevel" %% "cats-core" % "2.1.1",
+    "io.circe" %%% "circe-generic" % Ver.circe,
+    "io.circe" %%% "circe-literal" % Ver.circe,
+    "io.circe" %%% "circe-generic-extras" % Ver.circe,
+    "io.circe" %%% "circe-parser" % "0.13.0",
+    "com.softwaremill.quicklens" %%% "quicklens" % "1.5.0"
   ),
   scalacOptions ++= Seq(
     "-Xlint",
     "-unchecked",
     "-deprecation",
     "-feature",
-    "-Ypartial-unification",
-    "-language:higherKinds"
+    "-language:higherKinds",
+    "-Ymacro-annotations"
   )
 )
 
 lazy val jsSettings = Seq(
   libraryDependencies ++= Seq(
-    "me.shadaj" %%% "slinky-web" % "0.6.3",
-    "com.lambdaminute" %%% "slinky-wrappers-react-router" % "0.4.1",
-    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.0.2",
-    "io.suzaku" %%% "diode" % "1.1.5"
+    "me.shadaj" %%% "slinky-web" % Ver.slinky,
+    "me.shadaj" %%% "slinky-react-router" % Ver.slinky,
+    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.0.3",
+    "io.suzaku" %%% "diode" % "1.1.8"
   ),
   npmDependencies in Compile ++= Seq(
-    "react" -> "16.12.0",
-    "react-dom" -> "16.12.0",
+    "react" -> "16.13.0",
+    "react-dom" -> "16.13.0",
     "react-popper" -> "1.3.7",
     "react-router-dom" -> "5.1.2",
     "path-to-regexp" -> "6.1.0",
     "bootstrap" -> "4.4.1",
     "jquery" -> "3.4.1",
-    "konva" -> "4.1.2",
+    "konva" -> "4.2.2",
     "react-konva" -> "16.12.0-0"
   ),
   scalaJSUseMainModuleInitializer := true,
-  localUrl := ("0.0.0.0", 12345),
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
-  version.in(webpack) := "4.41.2",
-  webpackBundlingMode := BundlingMode.LibraryAndApplication(),
-  webpackBundlingMode.in(fastOptJS) := BundlingMode.LibraryOnly(),
-  scalacOptions += "-P:scalajs:sjsDefinedByDefault"
+  version.in(webpack) := "4.42.1",
+  webpackBundlingMode := BundlingMode.Application,
+  webpackBundlingMode.in(fastOptJS) := BundlingMode.LibraryOnly()
 )
 
 lazy val jvmSettings = Seq(
   libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats-effect" % "1.4.0",
-    "com.typesafe.akka" %% "akka-http"   % "10.1.9",
-    "com.typesafe.akka" %% "akka-stream" % "2.5.24",
-    "de.heikoseeberger" %% "akka-http-circe" % "1.27.0",
-    "ch.megard" %% "akka-http-cors" % "0.4.1",
-    "com.typesafe.akka" %% "akka-slf4j" % "2.5.24",
-    "ch.qos.logback" % "logback-classic" % LogbackVersion
+    "org.typelevel" %% "cats-effect" % "2.1.2",
+    "com.typesafe.akka" %% "akka-http"   % "10.1.11",
+    "com.typesafe.akka" %% "akka-stream" % Ver.akka,
+    "com.typesafe.akka" %% "akka-actor" % Ver.akka,
+    "de.heikoseeberger" %% "akka-http-circe" % "1.31.0",
+    "ch.megard" %% "akka-http-cors" % "0.4.2",
+    "com.typesafe.akka" %% "akka-slf4j" % Ver.akka,
+    "ch.qos.logback" % "logback-classic" % Ver.logback
   ),
   target := baseDirectory.value / ".." / "target"
 )
@@ -76,7 +78,6 @@ lazy val app =
     .jvmSettings(jvmSettings)
 
 lazy val appJS = app.js
-  .enablePlugins(WorkbenchPlugin)
   .enablePlugins(ScalaJSBundlerPlugin)
   .disablePlugins(RevolverPlugin)
 
