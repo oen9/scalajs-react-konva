@@ -1,4 +1,4 @@
-package example.modules.konvatypes
+package example.modules.konvashapes
 
 import slinky.core.annotations.react
 import slinky.core.FunctionalComponent
@@ -16,7 +16,16 @@ import com.github.oen9.slinky.bridge.reactkonva.Ellipse
       div(className := "card-body",
         Stage(800, 600)(
           Layer(
-            Ellipse(290, 150, radiusX = 50, radiusY = 100, fill = "grey", stroke = "pink", strokeWidth = 10, draggable = true),
+            Ellipse(
+              x = 290,
+              y = 150,
+              radiusX = 100,
+              radiusY = 50,
+              fill = "yellow",
+              stroke = "black",
+              strokeWidth = 4,
+              draggable = true
+            )
           )
         )
       )

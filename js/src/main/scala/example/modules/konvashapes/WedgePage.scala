@@ -1,4 +1,4 @@
-package example.modules.konvatypes
+package example.modules.konvashapes
 
 import slinky.core.annotations.react
 import slinky.core.FunctionalComponent
@@ -16,7 +16,25 @@ import com.github.oen9.slinky.bridge.reactkonva.Wedge
       div(className := "card-body",
         Stage(800, 600)(
           Layer(
-            Wedge(400, 150, radius = 100, angle = 60, fill = "yellow", draggable = true)
+            Wedge(
+              x = 290,
+              y = 150,
+              radius = 70,
+              angle = 60,
+              fill = "red",
+              stroke = "black",
+              strokeWidth = 4,
+              rotation = -120,
+              draggable = true
+            ),
+            Wedge(
+              x = 400,
+              y = 150,
+              radius = 100,
+              angle = 60,
+              fill = "yellow",
+              draggable = true
+            ),
           )
         )
       )

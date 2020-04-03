@@ -1,4 +1,4 @@
-package example.modules.konvatypes
+package example.modules.konvashapes
 
 import slinky.core.annotations.react
 import slinky.core.FunctionalComponent
@@ -16,8 +16,8 @@ import com.github.oen9.slinky.bridge.reactkonva.Line
       div(className := "card-body",
         Stage(800, 600)(
           Layer(
-            Line(IndexedSeq(300, 300, 350, 350, 400, 300), stroke = "blue", tension = 0.5, draggable = true),
-            Line(IndexedSeq(5, 70, 140, 23, 250, 60, 300, 20), stroke = "magenta", tension = 1, x = 190, y = 190, strokeWidth = 20, draggable = true),
+            Line(points = IndexedSeq(300, 300, 350, 350, 400, 300), stroke = "blue", tension = 0.5, draggable = true),
+            Line(points = IndexedSeq(5, 70, 140, 23, 250, 60, 300, 20), stroke = "magenta", tension = 1, x = 190, y = 190, strokeWidth = 20, draggable = true),
           )
         )
       )

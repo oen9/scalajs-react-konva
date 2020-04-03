@@ -37,7 +37,9 @@ import slinky.web.html._
             case DropDownMenuItems(idx, items) =>
               li(key := idx,
                 if (items.exists(_.location == pathname)) className := "nav-item dropdown active" else className := "nav-item dropdown",
-                a(className := "nav-link dropdown-toggle", href := "#", id := "navbarDropdown", role := "button", data-"toggle" := "dropdown",  aria-"haspopup" := "true", aria-"expanded" := "false", "types"),
+                a(className := "nav-link dropdown-toggle", href := "#", id := "navbarDropdown", role := "button", data-"toggle" := "dropdown",  aria-"haspopup" := "true", aria-"expanded" := "false",
+                  "tutorial shapes"
+                ),
                 div(className := "dropdown-menu", aria-"labelledby" := "navbarDropdown",
                   items.map(item =>
                     NavLink(exact = true, to = item.location)(className := "dropdown-item", key := item.idx, item.label)
