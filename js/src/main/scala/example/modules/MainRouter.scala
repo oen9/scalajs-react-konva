@@ -15,7 +15,7 @@ import slinky.reactrouter.Switch
     import konvashapes._
     val routerSwitch = Switch(
       Route(exact = true, path = Loc.home, component = KonvaShowcase.component),
-      Route(exact = true, path = Loc.about, component = About.component),
+
       Route(exact = true, path = Loc.rect, component = Rect1Page.component),
       Route(exact = true, path = Loc.rect2, component = Rect2Page.component),
       Route(exact = true, path = Loc.circle, component = CirclePage.component),
@@ -38,6 +38,9 @@ import slinky.reactrouter.Switch
       Route(exact = true, path = Loc.arrow, component = ArrowPage.component),
       Route(exact = true, path = Loc.shape, component = ShapePage.component),
       Route(exact = true, path = Loc.sprite, component = SpritePage.component),
+
+      Route(exact = true, path = Loc.flappyBird, component = FlappyBirdPage.component),
+      Route(exact = true, path = Loc.about, component = About.component),
     )
     ReactDiode.diodeContext.Provider(AppCircuit)(
       Layout(routerSwitch)
@@ -46,6 +49,7 @@ import slinky.reactrouter.Switch
 
   object Loc {
     val home = "/"
+
     val about = "/about"
     val rect = "/rect"
     val rect2 = "/rect2"
@@ -69,6 +73,8 @@ import slinky.reactrouter.Switch
     val regularPolygon = "/regularPolygon"
     val arrow = "/arrow"
     val shape = "/shape"
+
+    val flappyBird = "/flappyBird"
   }
 
   sealed trait MenuItemType
@@ -101,6 +107,7 @@ import slinky.reactrouter.Switch
       RegularMenuItem("22", "Arrow", Loc.arrow),
       RegularMenuItem("23", "Shape", Loc.shape),
     )),
+    RegularMenuItem("1000", "Flappy bird", Loc.flappyBird),
     RegularMenuItem("8888", "About", Loc.about)
   )
 }

@@ -1,45 +1,24 @@
 # react-konva-showcase
 
 [![Build Status](https://travis-ci.org/oen9/react-konva-showcase.svg?branch=master)](https://travis-ci.org/oen9/react-konva-showcase)
+[![CircleCI](https://circleci.com/gh/oen9/react-konva-showcase.svg?style=svg)](https://circleci.com/gh/oen9/react-konva-showcase)
 
-## Libs
+This is just slinky-bridge-react-konva showcase / demo
 
-### backend
+https://github.com/oen9/slinky-bridge-react-konva
 
-1. scala
-1. akka-http
+## Live
 
-### frontend
+https://react-konva-showcase.herokuapp.com/
 
-1. scalajs
-1. slinky (react)
-1. diode
-1. bootstrap
-1. konva
-1. slinky-bridge-react-konva
+## What's inside?
 
-## DEV
+- All shapes from [konva tutorial](https://konvajs.org/docs/index.html)
+- Animation class
+- Util class
+- use-image
+- Flappy Bird game!
 
-### js
+## Screenshot
 
-`fastOptJS::webpack`\
-`~fastOptJS`\
-http://localhost:12345/js/target/scala-2.12/classes/index-dev.html
-
-### server
-
-`reStart`\
-http://localhost:8080/
-
-### js + server (dev conf)
-
-Run server normally `reStart`.\
-Connect your js api to http://localhost:8080 (e.g. change some baseUrl in js project).\
-Run js: `fastOptJS::webpack` and `fastOptJS`.\
-Open http://localhost:12345/js/target/scala-2.12/classes/index-dev.html in browser.\
-When server changed run `reStart`.\
-When js changed run `fastOptJS`.
-
-### hints
-
-Remember to run `fastOptJS::webpack` after e.g. `npmDependencies` changes.
+![alt text](https://raw.githubusercontent.com/oen9/react-konva-showcase/master/img/screenshot.png "screenshot")
