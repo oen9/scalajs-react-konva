@@ -15,8 +15,8 @@ import slinky.core.FunctionalComponent
   val component = FunctionalComponent[Props] { _ =>
     val (color, setColor) = useState("navy")
     val (intersection, setIntersection) = useState(true)
-    val rec1Ref = React.createRef[Operations.Ref]
-    val rec2Ref = React.createRef[Operations.Ref]
+    val rec1Ref = React.createRef[Operations.ShapeRef]
+    val rec2Ref = React.createRef[Operations.ShapeRef]
 
     def handleClick(): Unit = {
       val newIntersection = Konva.Util.haveIntersection(rec1Ref.current.getClientRect(), rec2Ref.current.getClientRect())

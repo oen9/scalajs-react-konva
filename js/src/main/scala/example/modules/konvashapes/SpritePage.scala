@@ -55,7 +55,7 @@ import slinky.web.html._
       div(className := "card-header", "Sprite"),
       div(className := "card-body",
         button(className := "btn btn-primary", "punch", onClick := punch _),
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Sprite(
               x = 50,

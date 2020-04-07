@@ -1,10 +1,10 @@
 package example.components.flappy
 
+import com.github.oen9.slinky.bridge.konva.KonvaHelper
 import com.github.oen9.slinky.bridge.reactkonva.Group
 import com.github.oen9.slinky.bridge.reactkonva.Image
 import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.useimage.UseImage._
-import example.bridges.KonvaHelper
 import example.services.flappy.GameLogic
 import slinky.core.annotations.react
 import slinky.core.facade.Hooks._
@@ -18,11 +18,11 @@ import slinky.core.FunctionalComponent
 
   val component = FunctionalComponent[Props] {props =>
     val (groundImg, _) = useImage("front-res/img/flappy/ground.png")
-    val (debugRect, setDebugRect) = useState(KonvaHelper.createClientRect())
+    val (debugRect, setDebugRect) = useState(KonvaHelper.IRect())
 
     useLayoutEffect(() => {
       if (props.debug) {
-        val rect = KonvaHelper.createClientRect(
+        val rect = KonvaHelper.IRect(
           x = 0,
           y = GameLogic.groundY,
           width = GameLogic.width,

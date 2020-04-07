@@ -18,7 +18,7 @@ import com.github.oen9.slinky.bridge.reactkonva.Image
     div(className := "card",
       div(className := "card-header", "Image"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Image(
               x = 50,

@@ -32,11 +32,11 @@ import slinky.web.html._
     val (anim, setAnim) = useState(none[Animation])
 
     val birdRef = React.createRef[Operations.SpriteRef]
-    val layoutRef = React.createRef[Operations.Ref]
-    val upperPipe1 = React.createRef[Operations.Ref]
-    val lowerPipe1 = React.createRef[Operations.Ref]
-    val upperPipe2 = React.createRef[Operations.Ref]
-    val lowerPipe2 = React.createRef[Operations.Ref]
+    val layoutRef = React.createRef[Operations.ShapeRef]
+    val upperPipe1 = React.createRef[Operations.ShapeRef]
+    val lowerPipe1 = React.createRef[Operations.ShapeRef]
+    val upperPipe2 = React.createRef[Operations.ShapeRef]
+    val lowerPipe2 = React.createRef[Operations.ShapeRef]
 
     def checkCollision(): Boolean = { // do not use it inside timer
       val birdRect = birdRef.current.getClientRect
@@ -111,10 +111,12 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Flappy Bird"),
       div(className := "card-body text-center row justify-content-center",
-        Stage(GameLogic.width, GameLogic.height,
-            onClick = handleClick _,
-            onTap = handleClick _
-          )(
+        Stage(
+          width = GameLogic.width,
+          height = GameLogic.height,
+          onClick = handleClick _,
+          onTap = handleClick _
+        )(
           Layer(
             Image(
               image = background,

@@ -1,11 +1,11 @@
 package example.components.flappy
 
+import com.github.oen9.slinky.bridge.konva.KonvaHelper
 import com.github.oen9.slinky.bridge.reactkonva.Group
 import com.github.oen9.slinky.bridge.reactkonva.Image
 import com.github.oen9.slinky.bridge.reactkonva.Operations
 import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.useimage.UseImage._
-import example.bridges.KonvaHelper
 import example.services.flappy.GameLogic
 import slinky.core.annotations.react
 import slinky.core.facade.Hooks._
@@ -16,15 +16,15 @@ import slinky.core.FunctionalComponent
   case class Props(
     pipe: GameLogic.Pipe,
     holeSize: Int,
-    upperPipeRef: ReactRef[Operations.Ref],
-    lowerPipeRef: ReactRef[Operations.Ref],
+    upperPipeRef: ReactRef[Operations.ShapeRef],
+    lowerPipeRef: ReactRef[Operations.ShapeRef],
     debug: Boolean = false,
   )
 
   val component = FunctionalComponent[Props] { props =>
     val (pipeImg, _) = useImage("front-res/img/flappy/pipe.png")
-    val (debugPipe1Rect, setDebugPipe1Rect) = useState(KonvaHelper.createClientRect())
-    val (debugPipe2Rect, setDebugPipe2Rect) = useState(KonvaHelper.createClientRect())
+    val (debugPipe1Rect, setDebugPipe1Rect) = useState(KonvaHelper.IRect())
+    val (debugPipe2Rect, setDebugPipe2Rect) = useState(KonvaHelper.IRect())
 
     useLayoutEffect(() => {
       props.upperPipeRef.current.rotation(180)

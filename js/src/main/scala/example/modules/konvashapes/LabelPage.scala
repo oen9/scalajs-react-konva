@@ -16,7 +16,7 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Label"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Label(x = 170, y = 75, opacity = 0.75, draggable = true) (
               Tag(

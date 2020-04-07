@@ -16,7 +16,7 @@ import slinky.web.html._
 
   val component = FunctionalComponent[Props] { _ =>
     val (complexTextHeight, setComplexTextHeight) = useState(0)
-    val complexTextRef = React.createRef[Operations.Ref]
+    val complexTextRef = React.createRef[Operations.ShapeRef]
 
     useLayoutEffect(
       () => setComplexTextHeight(complexTextRef.current.height()),
@@ -26,7 +26,7 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Text"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Text(
               x = 200,

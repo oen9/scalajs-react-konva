@@ -1,10 +1,10 @@
 package example.modules.konvashapes
 
 import com.github.oen9.slinky.bridge.reactkonva.Layer
-import com.github.oen9.slinky.bridge.reactkonva.Stage
-import com.github.oen9.slinky.bridge.reactkonva.Shape
+import com.github.oen9.slinky.bridge.reactkonva.Operations.ShapeRef
 import com.github.oen9.slinky.bridge.reactkonva.ReactKonvaDOM.Context
-import com.github.oen9.slinky.bridge.reactkonva.ReactKonvaDOM.ContextShape
+import com.github.oen9.slinky.bridge.reactkonva.Shape
+import com.github.oen9.slinky.bridge.reactkonva.Stage
 import slinky.core.annotations.react
 import slinky.core.FunctionalComponent
 import slinky.web.html._
@@ -13,7 +13,7 @@ import slinky.web.html._
   type Props = Unit
 
   val component = FunctionalComponent[Props] { _ =>
-    def paintShape(context: Context, shape: ContextShape): Unit = {
+    def paintShape(context: Context, shape: ShapeRef): Unit = {
       context.beginPath();
       context.moveTo(20, 50);
       context.lineTo(220, 80);
@@ -26,7 +26,7 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Shape"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Shape(
               x = 100,

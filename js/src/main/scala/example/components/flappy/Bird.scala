@@ -1,11 +1,11 @@
 package example.components.flappy
 
+import com.github.oen9.slinky.bridge.konva.KonvaHelper
 import com.github.oen9.slinky.bridge.reactkonva.Group
 import com.github.oen9.slinky.bridge.reactkonva.Operations
 import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.reactkonva.Sprite
 import com.github.oen9.slinky.bridge.useimage.UseImage._
-import example.bridges.KonvaHelper
 import scalajs.js
 import slinky.core.annotations.react
 import slinky.core.facade.Hooks._
@@ -35,7 +35,7 @@ import slinky.core.FunctionalComponent
 
   val component = FunctionalComponent[Props] { props =>
     val (birdImg, _) = useImage("front-res/img/flappy/bird.png")
-    val (debugRect, setDebugRect) = useState(KonvaHelper.createClientRect())
+    val (debugRect, setDebugRect) = useState(KonvaHelper.IRect())
 
     useLayoutEffect(() => {
       props.ref.current.rotation(props.angle)

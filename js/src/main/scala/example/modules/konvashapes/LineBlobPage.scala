@@ -14,7 +14,7 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Line - blob"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Line(
               points = IndexedSeq(23, 20, 23, 160, 70, 93, 150, 109, 290, 139, 270, 93),

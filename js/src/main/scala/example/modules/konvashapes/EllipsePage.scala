@@ -14,7 +14,7 @@ import com.github.oen9.slinky.bridge.reactkonva.Ellipse
     div(className := "card",
       div(className := "card-header", "Ellipse"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Ellipse(
               x = 290,

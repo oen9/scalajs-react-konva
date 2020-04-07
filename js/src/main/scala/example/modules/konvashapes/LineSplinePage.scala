@@ -1,28 +1,29 @@
 package example.modules.konvashapes
 
+import com.github.oen9.slinky.bridge.konva.KonvaHelper
 import com.github.oen9.slinky.bridge.reactkonva.Layer
 import com.github.oen9.slinky.bridge.reactkonva.Line
 import com.github.oen9.slinky.bridge.reactkonva.Operations
 import com.github.oen9.slinky.bridge.reactkonva.Stage
 import slinky.core.annotations.react
+import slinky.core.facade.Hooks._
 import slinky.core.facade.React
 import slinky.core.FunctionalComponent
 import slinky.web.html._
-import slinky.core.facade.Hooks._
 
 @react object LineSplinePage {
   type Props = Unit
 
   val component = FunctionalComponent[Props] { _ =>
-    val line1Ref = React.createRef[Operations.Ref]
-    val line2Ref = React.createRef[Operations.Ref]
-    val line3Ref = React.createRef[Operations.Ref]
+    val line1Ref = React.createRef[Operations.ShapeRef]
+    val line2Ref = React.createRef[Operations.ShapeRef]
+    val line3Ref = React.createRef[Operations.ShapeRef]
 
     useLayoutEffect (
       () => {
-        line1Ref.current.move(Operations.Point(0, 5))
-        line2Ref.current.move(Operations.Point(0, 55))
-        line3Ref.current.move(Operations.Point(0, 105))
+        line1Ref.current.move(KonvaHelper.Vector2d(0, 5))
+        line2Ref.current.move(KonvaHelper.Vector2d(0, 55))
+        line3Ref.current.move(KonvaHelper.Vector2d(0, 105))
       },
       Seq()
     )
@@ -30,7 +31,7 @@ import slinky.core.facade.Hooks._
     div(className := "card",
       div(className := "card-header", "Line - spline"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Line(
               points = IndexedSeq(5, 70, 140, 23, 250, 60, 300, 20),

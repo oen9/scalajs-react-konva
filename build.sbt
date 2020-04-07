@@ -36,7 +36,7 @@ lazy val jsSettings = Seq(
   libraryDependencies ++= Seq(
     "me.shadaj" %%% "slinky-web" % Ver.slinky,
     "me.shadaj" %%% "slinky-react-router" % Ver.slinky,
-    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.0.5",
+    "com.github.oen9" %%% "slinky-bridge-react-konva" % "0.1.0",
     "io.suzaku" %%% "diode" % "1.1.8"
   ),
   npmDependencies in Compile ++= Seq(

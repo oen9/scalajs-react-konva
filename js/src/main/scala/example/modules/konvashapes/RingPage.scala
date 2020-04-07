@@ -14,7 +14,7 @@ import slinky.web.html._
     div(className := "card",
       div(className := "card-header", "Ring"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             Ring(
               x = 100,

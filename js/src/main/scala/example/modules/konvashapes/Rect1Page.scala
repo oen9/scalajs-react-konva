@@ -16,7 +16,7 @@ import example.components.AnimatedRectStrictMode
     div(className := "card",
       div(className := "card-header", "Rect1"),
       div(className := "card-body",
-        Stage(800, 600)(
+        Stage(width = 800, height = 600)(
           Layer(
             ColoredRect(),
             AnimatedRect(),
