@@ -8,20 +8,22 @@ object GameLogic {
   val width = 480
   val height = 640
   val groundY = 576
-  val birdWidth = 23
-  val groundWidth = 18
   val pipeWidth = 69
 
-  val holeSize = 200
-  val distanceBetweenPipes = 250
-  val pipeStartAtX = 500
+  val defOpt = GameOptions()
+  case class GameOptions(
+    holeSize: Int = 200,
+    distanceBetweenPipes: Int = 250,
+    pipeStartAtX: Int = 500,
 
-  val gravitationStep = 5
-  val upStep = 20
-  val rotationAngle = 30
-  val groundSpeed = 2
-  val upSlowdown = 2
+    gravitationStep: Int = 5,
+    upStep: Int = 20,
+    rotationAngle: Int = 30,
+    groundSpeed: Int = 2,
+    upSlowdown: Int = 2,
 
+    debug: Boolean = false,
+  )
   case class Pipe(x: Int , y: Int)
   case class Bird(
     y: Int = height / 2,
@@ -34,41 +36,39 @@ object GameLogic {
     score: Int = 0,
     groundShift: Int = 0,
     bird: Bird = Bird(),
-    pipe1: Pipe = generateNewPipe(pipeStartAtX),
-    pipe2: Pipe = generateNewPipe(pipeStartAtX + distanceBetweenPipes),
+    pipe1: Pipe = generateNewPipe(defOpt.pipeStartAtX, defOpt.holeSize),
+    pipe2: Pipe = generateNewPipe(defOpt.pipeStartAtX + defOpt.distanceBetweenPipes, defOpt.holeSize),
+    opt: GameOptions = defOpt,
   )
 
-  def generateNewPipe(startX: Int): Pipe = {
+  def generateNewPipe(startX: Int, holeSize: Int): Pipe = {
     val holePosition = Random.nextInt(groundY - holeSize)
     Pipe(x = startX, y = holePosition)
   }
 
 
-  def movePipe(pipe: Pipe): (Pipe, Int) = {
+  def movePipe(pipe: Pipe, opts: GameOptions): (Pipe, Int) = {
     if (pipe.x <= -pipeWidth)
-      (generateNewPipe(pipeStartAtX), 1)
+      (generateNewPipe(opts.pipeStartAtX, opts.holeSize), 1)
     else
-      (pipe.copy(x = pipe.x - groundSpeed), 0)
+      (pipe.copy(x = pipe.x - opts.groundSpeed), 0)
   }
 
   def loop(frame: Frame, gs: GameState): GameState = {
-    val newUpAcc =
-      if ((gs.bird.upAcceleration - upSlowdown) > 0) {
-        gs.bird.upAcceleration - upSlowdown
-      } else 0
+    val newUpAcc = Some(gs.bird.upAcceleration - gs.opt.upSlowdown).filter(_ > 0).getOrElse(0)
 
-    val currentAcc = gravitationStep - newUpAcc
+    val currentAcc = gs.opt.gravitationStep - newUpAcc
     val newBirdY = gs.bird.y + currentAcc
 
     val newAngle =
-      if (currentAcc > 0) rotationAngle
-      else if (currentAcc < 0) -rotationAngle
+      if (currentAcc > 0) gs.opt.rotationAngle
+      else if (currentAcc < 0) -gs.opt.rotationAngle
       else 0
 
-    val newGroundShift = if (gs.groundShift < -15) 0 else gs.groundShift - groundSpeed
+    val newGroundShift = if (gs.groundShift < -15) 0 else gs.groundShift - gs.opt.groundSpeed
 
-    val (newPipe1, pipe1Score) = movePipe(gs.pipe1)
-    val (newPipe2, pipe2Score) = movePipe(gs.pipe2)
+    val (newPipe1, pipe1Score) = movePipe(gs.pipe1, gs.opt)
+    val (newPipe2, pipe2Score) = movePipe(gs.pipe2, gs.opt)
 
     val newScore = gs.score + pipe1Score + pipe2Score
 
