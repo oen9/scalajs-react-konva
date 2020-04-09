@@ -1,10 +1,12 @@
 package example.modules.konvashapes
 
+import com.github.oen9.slinky.bridge.konva.Konva.KonvaEventObject
 import com.github.oen9.slinky.bridge.reactkonva.Layer
 import com.github.oen9.slinky.bridge.reactkonva.Operations
 import com.github.oen9.slinky.bridge.reactkonva.Sprite
 import com.github.oen9.slinky.bridge.reactkonva.Stage
 import com.github.oen9.slinky.bridge.useimage.UseImage._
+import org.scalajs.dom.raw.MouseEvent
 import scalajs.js
 import slinky.core.annotations.react
 import slinky.core.facade.Hooks._
@@ -38,6 +40,7 @@ import slinky.web.html._
       )
     )
 
+    def onClickPunch(e: KonvaEventObject[MouseEvent]) = punch()
     def punch(): Unit = {
       val blob = spriteRef.current
       blob.animation("punch")
@@ -65,7 +68,7 @@ import slinky.web.html._
               animation = "idle",
               frameRate = 7,
               frameIndex = 0,
-              onClick = punch _,
+              onClick = onClickPunch _,
               draggable = true,
             ).withRef(spriteRef),
           )

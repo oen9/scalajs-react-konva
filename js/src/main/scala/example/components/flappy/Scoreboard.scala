@@ -1,10 +1,12 @@
 package example.components.flappy
 
+import com.github.oen9.slinky.bridge.konva.Konva.KonvaEventObject
 import com.github.oen9.slinky.bridge.reactkonva.Group
 import com.github.oen9.slinky.bridge.reactkonva.Image
 import com.github.oen9.slinky.bridge.reactkonva.Text
 import com.github.oen9.slinky.bridge.useimage.UseImage._
 import example.services.flappy.GameLogic
+import org.scalajs.dom.raw.Event
 import slinky.core.annotations.react
 import slinky.core.FunctionalComponent
 
@@ -13,7 +15,7 @@ import slinky.core.FunctionalComponent
     gameOver: Boolean,
     score: Int,
     bestScore: Int,
-    onClickRestart: () => Unit,
+    onClickRestart: KonvaEventObject[Event] => Unit,
   )
 
   val component = FunctionalComponent[Props] { props =>

@@ -1,9 +1,11 @@
 package example.components
 
 import com.github.oen9.slinky.bridge.konva.Konva
+import com.github.oen9.slinky.bridge.konva.Konva.KonvaEventObject
 import com.github.oen9.slinky.bridge.reactkonva.Operations
 import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.reactkonva.Text
+import org.scalajs.dom.raw.MouseEvent
 import slinky.core.annotations.react
 import slinky.core.facade.Fragment
 import slinky.core.facade.Hooks._
@@ -18,7 +20,7 @@ import slinky.core.FunctionalComponent
     val rec1Ref = React.createRef[Operations.ShapeRef]
     val rec2Ref = React.createRef[Operations.ShapeRef]
 
-    def handleClick(): Unit = {
+    def handleClick(e: KonvaEventObject[MouseEvent]): Unit = {
       val newIntersection = Konva.Util.haveIntersection(rec1Ref.current.getClientRect(), rec2Ref.current.getClientRect())
       setIntersection(newIntersection)
       setColor(Konva.Util.getRandomColor())

@@ -19,7 +19,7 @@ import slinky.core.annotations.react
       fill = color,
       shadowBlur = 5,
       draggable = true,
-      onDragEnd = {() => {
+      onDragEnd = {_: Any => {
         setColor(Konva.Util.getRandomColor());
       }}
     )

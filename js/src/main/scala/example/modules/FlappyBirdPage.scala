@@ -3,6 +3,7 @@ package example.modules.konvashapes
 import cats.implicits._
 import com.github.oen9.slinky.bridge.konva.Konva
 import com.github.oen9.slinky.bridge.konva.Konva.Animation
+import com.github.oen9.slinky.bridge.konva.Konva.KonvaEventObject
 import com.github.oen9.slinky.bridge.reactkonva.Image
 import com.github.oen9.slinky.bridge.reactkonva.Layer
 import com.github.oen9.slinky.bridge.reactkonva.Operations
@@ -15,6 +16,7 @@ import example.components.flappy.Hood
 import example.components.flappy.PipeElem
 import example.components.flappy.Scoreboard
 import example.services.flappy.GameLogic
+import org.scalajs.dom.raw.Event
 import slinky.core.annotations.react
 import slinky.core.facade.Hooks._
 import slinky.core.facade.React
@@ -86,7 +88,7 @@ import slinky.web.html._
       }
     }, Seq(gs))
 
-    def handleClick(): Unit = {
+    def handleClick(e: KonvaEventObject[Event]): Unit = {
       gs.gameOver match {
         case false =>
           anim match {
@@ -99,7 +101,7 @@ import slinky.web.html._
       }
     }
 
-    def handleClickRestart(): Unit = {
+    def handleClickRestart(e: KonvaEventObject[Event]): Unit = {
       anim match {
         case Some(value) =>
           if (!value.isRunning()) value.start()

@@ -1,11 +1,13 @@
 package example.components
 
-import slinky.core.FunctionalComponent
-import slinky.core.facade.Hooks._
-import com.github.oen9.slinky.bridge.reactkonva.Rect
 import com.github.oen9.slinky.bridge.konva.Konva
-import slinky.core.annotations.react
+import com.github.oen9.slinky.bridge.konva.Konva.KonvaEventObject
+import com.github.oen9.slinky.bridge.reactkonva.Rect
+import org.scalajs.dom.raw.MouseEvent
 import scala.scalajs.js
+import slinky.core.annotations.react
+import slinky.core.facade.Hooks._
+import slinky.core.FunctionalComponent
 
 @react object AnimatedRect {
   type Props = Unit
@@ -13,11 +15,12 @@ import scala.scalajs.js
     val (color, setColor) = useState("green")
 
     useEffect(() => {
-      val interval = js.timers.setInterval(500)(handleClick)
+      val interval = js.timers.setInterval(500)(setRandomColor)
       () => js.timers.clearInterval(interval)
     })
 
-    def handleClick() = {
+    def handleClick(e: KonvaEventObject[MouseEvent]): Unit = setRandomColor()
+    def setRandomColor(): Unit = {
       setColor(Konva.Util.getRandomColor())
     }
 
